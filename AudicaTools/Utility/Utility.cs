@@ -101,11 +101,11 @@ namespace AudicaTools
         public static string GetMonoToString(float f)
         {
             if (IsMono) return f.ToString("N3");
-            float val = f;
-            float nextVal = BitConverter.Int32BitsToSingle(BitConverter.SingleToInt32Bits(val) + 1);
-            string[] valSplit = val.ToString().Split(".");
+            double val = f;
+            double nextVal = BitConverter.Int64BitsToDouble(BitConverter.DoubleToInt64Bits(val) + 1);
+            string[] valSplit = val.ToString().Split('.');
             int valDecimals = valSplit.Length > 1 ? valSplit[1].Length : 0;
-            string[] nextValSplit = nextVal.ToString().Split(".");
+            string[] nextValSplit = nextVal.ToString().Split('.');
             int nextValDecimals = nextValSplit.Length > 1 ? nextValSplit[1].Length : 0;
             int precision = Math.Max(Math.Min(Math.Max(valDecimals, nextValDecimals), 15), 8);
             double roundedVal = Math.Round(Math.Round(val, precision - 1, MidpointRounding.AwayFromZero), 3, MidpointRounding.AwayFromZero);
