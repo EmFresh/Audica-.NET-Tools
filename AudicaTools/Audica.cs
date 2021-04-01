@@ -260,6 +260,7 @@ namespace AudicaTools
 
         public struct AudicaMetadata
         {
+            public string weakHash{ get; private set; }
             Description desc;
             bool hasExpert;
             bool hasAdvanced;
@@ -275,6 +276,8 @@ namespace AudicaTools
                 this.hasModerate = hasModerate;
                 this.hasBeginner = hasBeginner;
                 this.fileInfo = fileInfo;
+
+                this.weakHash = Utility.CreateMD5(fileInfo.Name);
             }
         }
     }
